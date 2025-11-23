@@ -1,0 +1,30 @@
+logistics-website/
+├── package.json
+├── vite.config.ts
+├── tsconfig.json
+├── public/
+│   └── index.html
+├── src/
+│   ├── main.ts
+│   ├── App.vue
+│   ├── router/
+│   │   └── index.ts
+│   ├── views/
+│   │   ├── Home.vue
+│   │   ├── Services.vue
+│   │   ├── OurVehicles.vue
+│   │   ├── OurClients.vue
+│   │   └── ContactUs.vue
+│   ├── components/
+│   │   ├── Navbar.vue
+│   │   └── Footer.vue
+│   ├── assets/
+│   │   └── images/
+│   │       ├── logo.png (placeholder: use a free logistics logo from Unsplash or create one)
+│   │       ├── truck-icon.svg (Bootstrap Icon: truck)
+│   │       ├── services-bg.jpg (free image from Unsplash: e.g., shipping containers)
+│   │       ├── vehicles-bg.jpg (free image from Unsplash: e.g., fleet of trucks)
+│   │       ├── clients-bg.jpg (free image from Unsplash: e.g., handshake or partnership image)
+│   │       └── contact-bg.jpg (free image from Unsplash: e.g., contact form background)
+│   └── styles/
+│       └── main.css
