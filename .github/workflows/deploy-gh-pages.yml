@@ -11,7 +11,7 @@ on:
 
 # Required permissions for publishing to Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -21,6 +21,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
 
       - name: Use Node.js 18
         uses: actions/setup-node@v4
