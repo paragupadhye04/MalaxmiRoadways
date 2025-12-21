@@ -34,7 +34,10 @@ jobs:
           npm --version
 
       - name: Install dependencies (try ci, fallback to install)
-        run: npm ci || npm install
+        run: |
+          # Remove any checked-in node_modules to avoid permission/lock issues on runner
+          if [ -d "node_modules" ]; then rm -rf node_modules || true; fi
+          npm ci || npm install --verbose
 
       - name: Build
         run: npm run build
