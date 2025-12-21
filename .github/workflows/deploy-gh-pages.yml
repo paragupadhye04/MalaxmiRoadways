@@ -1,8 +1,19 @@
 name: Build and deploy to GitHub Pages
 
+# Ensure only one deploy runs at a time for the main branch
+concurrency:
+  group: deploy-gh-pages-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches: [ main ]
+
+# Required permissions for publishing to Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build-and-deploy:
@@ -15,9 +26,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
+          cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Check Node & npm versions
+        run: |
+          node --version
+          npm --version
+
+      - name: Install dependencies (try ci, fallback to install)
+        run: npm ci || npm install
 
       - name: Build
         run: npm run build
