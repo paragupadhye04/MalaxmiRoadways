@@ -33,11 +33,18 @@ jobs:
           node --version
           npm --version
 
-      - name: Install dependencies (try ci, fallback to install)
+      - name: Show package.json scripts (debug)
+        run: |
+          node -p "JSON.stringify(require('./package.json').scripts, null, 2)"
+
+      - name: Install dependencies (verbose, try ci then install)
+        env:
+          NPM_CONFIG_LOGLEVEL: verbose
         run: |
           # Remove any checked-in node_modules to avoid permission/lock issues on runner
           if [ -d "node_modules" ]; then rm -rf node_modules || true; fi
-          npm ci || npm install --verbose
+          echo "Running npm ci (verbose)"
+          npm ci --loglevel verbose || (echo "npm ci failed, falling back to npm install" && npm install --loglevel verbose)
 
       - name: Build
         run: npm run build
